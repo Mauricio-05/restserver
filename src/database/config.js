@@ -8,7 +8,7 @@ const dbConnection = async () => {
     console.log('Connected node_coffee_db database ☕')
     
   } catch (error) {
-    console.log(error)
+    console.error(error)
     throw new Error('Error al conectarse a la base de datos')
   }
 }
