@@ -4,7 +4,8 @@ import express from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
 
-import { router as routerUser } from "../routes/usuarios.routes.js"
+import { router as routerUser } from "../routes/usuarios.js"
+import dbConnection from '../database/config.js';
 
 
 class Server {
@@ -16,12 +17,19 @@ class Server {
      //paths routes
      this.usuariosPath = '/api/usuarios'
 
+     // conectar a base de datos
+     this.conectarDb()
+
      //Middlewares
      this.middlewares()
 
      // Rutas de mi aplicacion
      this.routes()
 
+   }
+
+   async conectarDb(){
+    await dbConnection()
    }
 
    middlewares(){
@@ -45,4 +53,4 @@ class Server {
    }
 }
 
-export { Server }
+export default Server 
