@@ -73,11 +73,9 @@ const usuariosDelete = async (req = request , res = response)=> {
 
     const { id } = req.params
 
-    // Fisicamente eliminado
-    // const usuario = await Usuario.findByIdAndDelete(id)
-
-    // Logicamente eliminado
     const usuario = await Usuario.findByIdAndUpdate( id, { estado: false })
+
+    const usuarioAutentificado = req.usuario
 
 
     res.json({

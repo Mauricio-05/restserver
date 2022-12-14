@@ -5,6 +5,8 @@ import morgan from 'morgan'
 import cors from 'cors'
 
 import { router as routerUser } from "../routes/usuarios.js"
+import { router as routerAuth } from "../routes/auth.js"
+
 import dbConnection from '../database/config.js';
 
 
@@ -16,6 +18,7 @@ class Server {
 
      //paths routes
      this.usuariosPath = '/api/usuarios'
+     this.authPath = '/api/auth'
 
      // conectar a base de datos
      this.conectarDb()
@@ -43,6 +46,7 @@ class Server {
    }
 
    routes(){
+     this.app.use(this.authPath, routerAuth)
      this.app.use(this.usuariosPath, routerUser)
    }
 
